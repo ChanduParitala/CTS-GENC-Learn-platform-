@@ -26,16 +26,13 @@ public class ApplicationUtil {
 		List<String> studentAdmissionList = new ArrayList<String>();
 		  //Code here..
 		  	try(Stream<String> lines = Files.lines(Paths.get(fileName))) {
-			lines.forEach((line)->{
+			lines.forEach((line)->
+			{
 				String[] words = line.split(",");
-				if(ApplicationUtil.checkIfValidAdmission(
-							ApplicationUtil.convertStringToDate(words[2].trim()), 
-							ApplicationUtil.convertStringToDate(words[4].trim()), 
-							words[7].trim()
-						)
-					){
-					studentAdmissionList.add(line.trim());
-				}
+				Date dOC = ApplicationUtil.convertStringToDate(words[2].trim());
+				Date dOA = ApplicationUtil.convertStringToDate(words[4].trim());
+				if(ApplicationUtil.checkIfValidAdmission(dOC, dOA, words[7].trim()))
+				  studentAdmissionList.add(line.trim());
 			});
 		} catch(IOException e) {
 			throw new StudentAdmissionException(e.getMessage(), e.getCause());
@@ -83,17 +80,16 @@ public class ApplicationUtil {
 
 	public static boolean checkIfValidAdmission(Date dtOfCounseling, Date dtOfAdmission, String manager) {
 		boolean admissionValidity = false;
-	
-		
-		long counselingMillis = dtOfCounseling.getTime();
-		long admissionMillis = dtOfAdmission.getTime();
 
-		long days = TimeUnit.DAYS.convert(Math.abs(admissionMillis - counselingMillis), TimeUnit.MILLISECONDS);
+		// Code here..
+		long diff = ((dtOfAdmission.getTime()-dtOfCounseling.getTime())/(1000*60*60*24));
 
-		if(days > 10 && manager.equalsIgnoreCase("Approved")) {
-			admissionValidity = true;
-		}
+	if(manager.equalsIgnoreCase("approved") && diff<=10)
+	{
 		
+		admissionValidity=true;
+	}
+
 		return admissionValidity;
 	}
 }
