@@ -1,0 +1,159 @@
+IMPORTANT INSTRUCTIONS
+1.	Please read the document thoroughly before you code.
+2.	Import the given skeleton code into your Eclipse.
+3.	Use Java 8 for solving the code challenge.
+4.	Run the database script provided to set up your database.
+5.	You have to test the code and ensure there are no compilation errors before submission
+
+I.	BUSINESS SCENARIO
+UNO engineering college has admission open for first year students. The college has 90% counseling admission seats and 10% management admission seats. The student chooses the college in counseling, then within 10 days they have a confirmed admission. 
+The college management gets numerous admissions. They want to make a fee brochure as processing this manually takes enormous time. Therefore in-order to automate, they need a system which scrutinizes the application and files only those student admissions that are approved by management, and the date of counseling is less than or equal to 10 days of the date of admission. Then, the system should update the corresponding admissionFee, tuitionFee, hostelFee. It should calculate the totalCollegeFee, update the status as ‘AdmissionSuccessfull’, and finally add the data in the database.
+Admission details are available in the text files in the csv formats. Module that is to be developed should enable one to search those admissions which have been approved by the manager, and raised within stipulated days; subsequently based on the departmentName, preferCollegeHostel, and firstGraduate. The respective total fee should be calculated and updated for the admission details and the same is to be inserted in the database. 
+
+II.	Functional Requirement Specification:
+Req. #	Req. Name	Req. Description
+1	Parse Input	The input file has to be parsed and the student admission details need to be fetched for the approved admission by manager and the date of counseling is less than or equal to 10 days of the date of admission.
+2	Update the total college fee and persist the data in the database	The total college fee is to be calculated and then, needs to be saved in the database.
+3	Search particular admission details based on admissionId	Search the admission details by admissionId.
+
+
+III.	Technical Requirements
+
+For all the functional requirements 1, 2 and 3 component specification and method specification are given below. Please follow the same order to implement them using the code skeleton.
+
+(1)	A. Component Specification:
+
+Requirement Name	1.	Parse Input
+Component Definition	Reads the input text file, and converts the data into objects
+Files Included
+(refer Skeleton)	StudentAdmissionService.java, ApplicationUtil.java, StudentAdmission.java, inputFeed.txt
+StudentAdmissionException.java
+Responsibilities	Reads the input file, checks if the admission details are approved by manager and the date of counseling is less than or equal to 10 days of the date of admission and builds the “StudentAdmission” value object and returns it.
+Design Constraints	a.	Input file format is .txt and is comma separated (Sample rows are added. You can add any number of rows to test your service class, from main method.)
+b.	Do not hard code the input file path inside any method – it has to be used from the input argument only as per code skeleton.
+c.	File Structure is like below:
+<admissionId>,<studentCode>,<dateOfCounseling>,<departmentName>,<dateOfAdmission>,<preferCollegeHostel>,<firstGraduate>,<managerApproval>
+
+Assume: The attributes value of preferCollegeHostel and firstGraduate is YES or NO.
+d.	In the inputFeed.txt, filter the admission details which are approved by manager and the date of counseling is less than or equal to 10 days of the date of admission.
+e.	Assume that the currencies are in INR.
+f.	Assume that the Date fields in the file will be in the format yyyy-MM-dd.
+g.	Do not change the data types of the value object given in POJO.
+h.	Always convert the date field value to java.util.date with format, yyyy-MM-dd before setting in “StudentAdmission” value object.
+i.	Use ApplicationUtil.java for reading file, performing date operations, etc.
+Resources	a.	inputFeed.txt is the input file that must be parsed. The file, along with file location will be sent as an argument to the StudentAdmissionService. addStudentAdmissionDetails method. File location/path must not be hardcoded
+Process Flow	a.	The app will be invoked by calling the StudentAdmissionService. addStudentAdmissionDetails with the inputFeed (.txt file)
+b.	addStudentAdmissionDetails calls the readFile() method by passing the file to it as argument.
+c.	Read the file using File I/O or Java Streams in ApplicationUtil.readFile method.
+d.	readFile returns List <String> of records, that were read from the file; It should filter only records of the admission which are approved by manager and the date of counseling is less than or equal to 10 days of the date of admission. Returns these records. (with each record’s fields separated by comma)
+e.	Code the method StudentAdmissionService. buildStudentAdmissionsList. pass the output of the readFile method to this method
+f.	In the method StudentAdmissionService. buildStudentAdmissionsList  Read every line from the list returned by readFile method, split the records based on comma separator and return the List of records of “StudentAdmission” records.
+g.	Use the ApplicationUtil. convertStringToDate method to convert the date from String Format to java.util.Date format (yyyy-MM-dd).
+h.	Build the “StudentAdmission” Value Object from the values obtained in every line
+ (Check the Input file format in Design Constraints row)
+
+Exceptional Conditions	While doing File I/O in the ApplicationUtil.readFile method, catch all exceptions and throw application specific exception, StudentAdmissionException.
+
+(1)	B. Method Specification:
+
+ClassName	Method Name	Input Parameters	Output Parameters
+StudentAdmissionService	calculateTotalCollegeFee	String preferCollegeHostel, String firstGraduate, String departmentName	static double[]
+ApplicationUtil	readFile	String fileName	static List<String>
+StudentAdmissionService	buildStudentAdmissionsList	List<String> studentAdmissionRecords	static List<StudentAdmission>
+ApplicationUtil	convertStringToDate	String inDate	static Date
+ApplicationUtil	convertUtilToSqlDate	java.util.Date uDate	static java.sql.Date
+ApplicationUtil	checkIfValidAdmission	Date dtOfCounseling , Date dtOfAdmission, String manager	static boolean
+
+2	& 3  Component Specification:
+
+Requirement Name	2. Persist Data into Database 
+3.Fetch Data
+Component Definition	Helps to calculate the totalCollegeFee and add the calculated data to database.
+Files Included
+(refer Skeleton)	StudentAdmissionService.java, ApplicationUtil.java, StudentAdmission.java, StudentAdmissionException.java DBConnectionManager.java,  StudentAdmissionDAO
+Responsibilities	Updates “StudentAdmission” student’s total college fee based on departmentName and also by calculating the admissionFee, tuitionFee, hostelFee. Persists all “StudentAdmission” admission details to database.
+Design Constraints	a.	The database.properties has connection details required to connect to the backend
+b.	Do not change the keys of the property files, you can update the values based on the local database settings. For example, do not change the key, db.username. Rather you can have any value as username based on local settings.
+c.	Use only JDBC to establish Database connection
+d.	Assume the location of the property file will be always as given in the skeleton.
+e.	Don’t Hardcode the connection string to establish database connection. Read it from property files.
+f.	Use Prepared Statement to insert records
+g.	Close all the resources after use
+h.	Catch all database related exceptions and throw Application specific exception only from DAO or from DBConnectionManager class. There has to be a private constructor in DBConnectionManager class to load the database property file and to establish a database connection using JDBC.
+i.	Rollback the Insert if any SQL exception has occurred. Throw application specific exception, StudentAdmissionException
+j.	Method searchStudentAdmission() does search operation, here invoke getAllStudentAdmissionDetails() from Dao class and search record in the list
+k.	Calculate the admissionFee, tuitionFee, hostelFee and totalCollegeFee based on the constraints in the table given below, all costs in INR – depending on the departmentName, preferCollegeHostel & firstGraduate.
+
+Department Name	Admission Fee	Tuition Fee	Hostel Fee
+EEE	30000	45000	75000
+ECE	30000	50000	75000
+CSE	30000	45000	75000
+MECH	30000	55000	75000
+CIVIL	30000	50000	75000
+IT	30000	45000	75000
+
+Formula:
+If Hostel fee is Yes then, 75000. If Hostel fee is No then, 0.
+
+First graduate is YES then,
+totalCollegeFee= admissionFee+tuitionFee+hostelFee-20000
+
+First graduate is NO then,
+totalCollegeFee= admissionFee+tuitionFee+hostelFee
+
+Example: If EEE department, collegeHostel is yes and first graduate is yes then,
+admissionFee=30000
+tuitionFee=45000
+hostelFee=75000
+totalCollegeFee= 130000
+Resources	database.properties – has connection details, used to establish database connection.
+Process Flow	a.	Modify the StudentAdmissionService. buildStudentAdmissionsList method (refer the above section) then set totalCollegeFee to StudentAdmission objects.
+b.	Use StudentAdmissionService. calculateTotalCollegeFee method to get totalCollegeFee, with the admission details like departmentName, preferCollegeHostel & firstGraduate of the students passed as parameters.
+c.	The method StudentAdmissionService.buildStudentAdmissionsList must return the list of “StudentAdmission” objects with totalCollegeFee, after calculating the admissionFee, tuitionFee, hostelFee. For the admission details which have been approved by manager & the date of counseling is less than or equal to 10 days of the date of admission, let’s persist the details as it is.
+d.	After reading file, build records as List<StudentAdmission>, call the StudentAdmissionDAO.addStudentAdmissionDetails method to insert values to database. You may have to convert the java.util.date to java.sql.date before storing to database.
+e.	If Insert has happened successfully, return true; false otherwise.
+Exceptional Conditions	While working with DAO methods, catch all exceptions and throw application specific exception, StudentAdmissionException.
+
+2	& 3 B. Method Specification:
+
+ClassName	Method Name	Input Parameters	Output Parameters
+StudentAdmissionService	addStudentAdmissionDetails	String inputFeed	boolean
+StudentAdmissionService	searchStudentAdmission	String admissionId	boolean
+DBConnectionManager	DBConnectionManager()	NA	NA
+DBConnectionManager	get Instance()	NA	DBConnectionManager
+StudentAdmissionDAO	addStudentAdmissionDetails	List <StudentAdmission> stdAdmission	boolean
+StudentAdmissionDAO	getAllStudentAdmissionDetails	 NA	List <StudentAdmission>
+
+     Note: You are allowed to modify input file text to incorporate more test data for various test scenarios /       boundary conditions. Test your application by invoking the service methods from the main class, main () method.    Follow Java Naming Conventions, test the code quality by running PMD rules in Eclipse or any other IDE that you use.
+
+
+    Note : You don't need to write anything in the MainApp.java, it is your wish to check the correctness of your code.
+    
+SAMPLE INPUT
+
+inputFeed.txt
+
+A001,S001,2020-01-15,EEE,2020-01-25,YES,YES,Approved
+A002,S002,2020-02-04,MECH,2020-02-12,N0,YES,Approved
+A003,S003,2020-04-23,CSE,2020-05-27,YES,NO,Approved
+A004,S004,2020-07-16,IT,2020-07-24,NO,NO,Approved
+A005,S005,2020-08-10,ECE,2020-08-11,YES,YES,Approved
+A006,S006,2020-09-01,EEE,2020-09-10,YES,NO,Pending
+A007,S007,2020-10-19,CIVIL,2020-10-28,N0,YES,Approved
+
+SAMPLE OUTPUT1
+
+Note: Records should be saved in DB as per business logic
+And for search operation if given admissionId is “A005”, it should display 
+
+Student Admission Details: [admissionId=A005, studentCode=S005, dateOfCounseling=2020-08-10, departmentName=ECE, dateOfAdmission=2020-08-11, preferCollegeHostel=YES, firstGraduate=YES, managerApproval=Approved, admissionFee=30000.0, tuitionFee=50000.0, hostelFee=75000.0, totalCollegeFee=135000.0, finalStatusOfAdmission=AdmissionSuccessfull]
+
+Student admission found
+
+SAMPLE OUTPUT2
+
+Note: Records should be saved in DB as per business logic
+And for search operation if given admissionId is “A234”, it should display 
+
+Student admission not found
+
