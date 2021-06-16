@@ -1,9 +1,9 @@
-//package com.exception;
+package com.exception;
 
 public class InvalidCustomerException extends Exception
 {
-    public InvalidCustomerException(String s)
+    public InvalidCustomerException(String message)
     {
-        super(s);
+        super(message);
     }
 }
