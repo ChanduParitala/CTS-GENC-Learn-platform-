@@ -1,9 +1,9 @@
-//package com.exception;
+package com.exception;
 
 public class InvalidFlightException extends Exception
 {
-    public InvalidFlightException(String s)
+    public InvalidFlightException(String Message)
     {
-        super(s);
+        super(Message);
     }
 }
