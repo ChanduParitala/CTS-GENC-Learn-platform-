@@ -4,7 +4,7 @@ Functionality	||   	Criteria
 =======================================================================================================================================================================
 User 1 		      ||  1 - "Register" button registration form:
 (website 	      ||
-registration)	  ||   	1.1 - FirstName 3-15 characters
+registration)	      ||   	1.1 - FirstName 3-15 characters
 		            ||   	1.2 - LastName  3-15 characters
 		            ||   	1.3 - DOB age should be more than 18yrs(selected from calendar drop down)
 		            ||   	1.4 - Gender Radio Button
@@ -20,36 +20,36 @@ registration)	  ||   	1.1 - FirstName 3-15 characters
 		            ||  5 - upon saving the information in DB, "New User created successfully"
 =======================================================================================================================================================================
 User 2		      ||  1 - System should have admin login details credentials in DB.
-(Admin Login)	  ||  2 - when keyed with correct login details, Login, else, "User ID not present" or "Password not matching"
+(Admin Login)	      ||  2 - when keyed with correct login details, Login, else, "User ID not present" or "Password not matching"
 =======================================================================================================================================================================
 User 3		      ||  1 - User Id and Password as inputs from LoginPage - "Login" click
-(User/Contractor||  2 - Validate the credentials, Login, else, "User ID not present" or "Password not matching".
+(User/Contractor      ||  2 - Validate the credentials, Login, else, "User ID not present" or "Password not matching".
 Login)		      ||
 ======================================================================================================================================================================
 User 4		      ||  1 - Only allow Admin, to view the tender details
-(Display Tender	||  2 - "Tender Details" option to view the detaisl, redirect to page.
+(Display Tender	      ||  2 - "Tender Details" option to view the detaisl, redirect to page.
 Details)	      ||  3 - Tender details like : tenderID, tenderType, tenderDate, minimumQuote.
 ======================================================================================================================================================================
 User 5		      ||  1 - Both Admin and Contractor should be able to search about a tender using Tender ID
-(Tender Details)||
+(Tender Details)      ||
 ======================================================================================================================================================================
 User 6		      ||  1 - Admin should get the Contractor List from "Contractors" view only for Admin.
-(Contractor 	  ||  2 - Clicking on a specific Contractor must display, their details like : contractorID, contractorName, contractorAddress, emailID.
+(Contractor 	      ||  2 - Clicking on a specific Contractor must display, their details like : contractorID, contractorName, contractorAddress, emailID.
 Details)	      ||  3 - use pagination in css to list the search results.
 ======================================================================================================================================================================
 User 7		      ||  1 - the user should be able to view the tenderDetails, by clicking "Tender Details", User should also be able to copy the details.
-(Apply Tender)	||
+(Apply Tender)	      ||
 ======================================================================================================================================================================
 User 8		      ||  1 - User should be able to upload docs by clicking "Upload documents".
 (Upload 	      ||  2 - User failing to upload mandatory fields, Alert message "Please update the highlighted mandatory fields", highlight the fields in red color.
-Documents)	    ||  3 - Post successful validation, save the documents, message "Your documents are uploaded successfully".
+Documents)	      ||  3 - Post successful validation, save the documents, message "Your documents are uploaded successfully".
 ======================================================================================================================================================================
 User 9		      ||  1 - Only Admin is able to evaluate the tender.
 (Tender 	      ||  2 - Based on tenderAmount and minimumQuote.
 Evaluation)	    ||
 ======================================================================================================================================================================
 User 10		      ||  1 - Only Admin can Approve the tender to a contractor, after the approval admin sends a message to user via email
-(Contract     	||  2 - the message is "Contract has been Approved".
+(Contract     	      ||  2 - the message is "Contract has been Approved".
 Approval)	      ||
 =====================================================================================================================================================================
 User 11		||  1 - User should be able to start a Contract.
