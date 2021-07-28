@@ -1,0 +1,252 @@
+body {
+	background-color: lavender;
+}
+
+.my-container {
+	background-color: lavender;
+}
+
+.footer {
+	margin-bottom: 0px;
+}
+
+.navbar-header img {
+	margin-top: 10px;
+	margin-bottom: auto;
+	margin-right: auto;
+}
+
+.navbar-brand h1 {
+	font-size: 2em;
+	margin-top: 2px;
+	color: #FFFFFF;
+	font-family: 'Candara';
+	font-style: inherit;
+	font-weight: bold;
+}
+
+.secondnav {
+	margin-top: -19.1px;
+}
+
+.secondcont {
+	margin-left: 13%;
+	font-size: 18px;
+}
+
+.menusize {
+	font-size: 20px;
+	margin-top: 20px;
+}
+
+#nav-list {
+	margin-top: 0px;
+	font-weight: bold;
+	color: green;
+	font-size: 15px;
+	margin-left: 0;
+}
+
+#nav-list a {
+	color: #0059b3;
+}
+
+.dropdown-menu li a {
+	font-weight: bold;
+	font-size: 14px;
+	color: blue;
+}
+
+#nav-list a:hover {
+	background-color: #99bbff;
+	color: white;
+	font-weight: bold;
+	padding: auto;
+	border-radius: 8px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+#nav-list a:active {
+	background-color: #191966;
+	color: white;
+	font-weight: bold;
+	padding: auto;
+	border-radius: 8px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+#na
+#nav-list a span {
+	font-size: 1.0em;
+}
+
+.back {
+	margin-top: -20px;
+	max-height: 580px;
+	width: 1600px;
+}
+/** Extra smalll devices (portrait phones, less than 576px)**/
+@media ( max-width : 575.99px) {
+	.navbar-brand h1 {
+		font-size: 0.9em;
+		margin-top: -5px;
+		margin-bottom: -15px;
+		color: #FFFFFF;
+		font-family: 'Candara'; font-style : inherit;
+		font-weight: bold;
+		font-style: inherit;
+	}
+	.navbar-header img {
+		margin-top: 10px;
+		margin-right: 1px;
+		margin-left: 2px;
+		width: auto;
+		height: auto;
+	}
+	.navbar-brand {
+		margin-bottom: -23px;
+	}
+	.navbar-header p {
+		margin-top: 30px;
+		margin-left: 16%;
+		font-size: 1.0em;
+		font-family: 'Candara'; font-weight : bold;
+		margin-bottom: -10px;
+		color: #ccccff;
+	}
+	.menusize {
+		font-size: 14px;
+		clear: right;
+		margin-top: -20px;
+		float: right;
+		margin-bottom: 0px;
+	}
+	.menubar {
+		margin-bottom: 13px;
+	}
+}
+
+/** Small devices (landscape phones, 576px and up)  **/
+@media ( min-width : 576px) and (max-width: 767.99px) {
+	.navbar-brand h1 {
+		font-size: 20px;
+		margin-top: 2px;
+		color: #FFFFFF;
+		font-family: 'Candara';
+		font-style: inherit;
+		font-weight: bold;
+	}
+	.navbar-header img {
+		margin-top: 10px;
+		margin-bottom: 10px;
+		margin-right: 2px;
+		margin-left: 4px;
+		width: auto;
+		height: auto;
+	}
+	.navbar-header p {
+		margin-top: 50px;
+		margin-left: 85px;
+		font-size: 1.0em;
+		color: #ccccff;
+		font-family: 'Candara'; font-weight : bold;
+	}
+	.menusize {
+		margin-top: -37px;
+	}
+	.menubar {
+		margin-bottom: 13px;
+	}
+}
+
+/** Medium devices (tablets, 768px and up) **/
+@media ( min-width : 768px) and (max-width: 991.99px) {
+	.navbar-brand h1 {
+		font-size: 30px;
+		margin-top: 2px;
+		color: #FFFFFF;
+		font-family: 'Candara';
+		font-style: inherit;
+		font-weight: bold;
+	}
+	.navbar-header img {
+		margin-top: 10px;
+		margin-bottom: 10px;
+		margin-right: 10px;
+		width: auto;
+		height: auto;
+	}
+	.navbar-header p {
+		margin-top: 54px;
+		margin-left: 85px;
+		font-size: 1.2em;
+		color: #ccccff;
+		font-family: 'Candara'; font-weight : bold;
+	}
+	.menusize {
+		margin-top: -40px;
+	}
+	.menubar {
+		min-height: 12px;
+	}
+}
+
+/** Large devices (desktops, 992px and up) **/
+@media ( min-width : 992px) and (max-width: 1199.99px) {
+	.navbar-brand h1 {
+		font-size: 2em;
+		margin-top: 2px;
+		color: #FFFFFF;
+		font-family: 'Candara';
+		font-style: inherit;
+		font-weight: bold;
+	}
+	.navbar-header p {
+		margin-top: 58px;
+		margin-left: 85px;
+		font-size: 1.5em;
+		color: #ccccff;
+		font-family: 'Candara'; font-weight : bold;
+	}
+	.navbar-header img {
+		margin-top: 10px;
+		margin-bottom: 10px;
+		margin-right: 10px;
+		width: auto;
+		height: auto;
+	}
+	.menubar {
+		min-height: 80px;
+	}
+}
+
+/** Extra large devices (large desktops, 1200px and up) **/
+@media ( min-width : 1200px) {
+	.navbar-brand h1 {
+		font-size: 2em;
+		margin-top: 4px;
+		color: #FFFFFF;
+		font-family: 'Candara';
+		font-style: inherit;
+		font-weight: bold;
+	}
+	.navbar-header p {
+		margin-top: 60px;
+		margin-left: 95px;
+		font-size: 1.5em;
+		color: #ccccff;
+		font-family: 'Candara'; font-weight : bold;
+	}
+	.navbar-header img {
+		margin-top: 10px;
+		margin-bottom: 10px;
+		margin-right: 10px;
+		width: auto;
+		height: auto;
+	}
+	.menubar {
+		min-height: 72px;
+	}
+}
